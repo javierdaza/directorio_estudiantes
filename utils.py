@@ -1,6 +1,6 @@
 from peewee import IntegrityError
 
-from models.estudiante import Estudiante, db
+from models.estudiante import Estudiante
 
 
 lista_estudiantes = [
