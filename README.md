@@ -15,7 +15,7 @@ PRODUCTION=False
 ## Instalación local
 
 - Crear archivo .env
-- Configura la variable PRODUCTION dependiendo del ambiente
+- Configura la variable `PRODUCTION` dependiendo del ambiente
 - git clone
 - python3 -m venv venv
 - source venv/bin/activate
