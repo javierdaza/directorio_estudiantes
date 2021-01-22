@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+      <main>
+        <h1>Perfil</h1>
+          <section>
+            {% if persona %}
+              <img src="{{ persona.foto }}"/>
+              <h2>{{ persona.nombre_usuario }}</h2>
+              <p class="person-title">{{ persona.puntaje }}</p>
+              <p class="person-email">{{ persona.email }}</p>
+              <p>{{ persona.fecha_creacion.strftime('%A %B %d, %Y %I:%M%p') }}</p>
+              <p>{{ persona.numero_telefono }}</p>
+              <p>{{ persona.motivacion }}</p>
+            {% endif %}
+          </section>
+      </main>
+      <button><a href="/">Volver al home</a></button>
+{% endblock %}

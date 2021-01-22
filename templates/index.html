@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+      <main>
+        <h1>Directorio</h1>
+        <button><a href="/crear">Crear</a></button>
+        <br>
+        <br>
+        {% if datos %}
+          {% for persona in datos %}
+            <section>
+              <a href="/perfil/{{ persona.nombre_usuario }}">
+                <img src="{{ persona.foto }}"/>
+              </a>
+              <h2>{{ persona.nombre_usuario }}</h2>
+              <p class="person-title">{{ persona.puntaje }}</p>
+              <p class="person-email">{{ persona.email }}</p>
+              <p class="items">{{ persona.numero_telefono }}</p>
+            </section>
+          {% endfor %}
+        {% else %}
+        <p>No hay datos.</p>
+        <button><a href="/cargar">Ir a cargar listado</a></button>
+        {% endif %}
+      </main>
+{% endblock %}
