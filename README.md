@@ -7,7 +7,7 @@ Este es un proyecto sencillo que muestra el uso Flask y el ORM llamado PeeWee.  
 Variables de entorno en **.env**
 ```
 SECRET_KEY=muchoscaracteresaleatorios
-PEEWEE_DATABASE_URI=app.db
+DATABASE_URL=app.db
 PRODUCTION=False
 ```
 

@@ -24,9 +24,9 @@ class Estudiante(BaseModel):
 
 
 if production:
-    database = PostgresqlDatabase(config('PEEWEE_DATABASE_URI'))
+    database = PostgresqlDatabase(config('DATABASE_URL'))
 else:
-    database = SqliteDatabase(config('PEEWEE_DATABASE_URI'))
+    database = SqliteDatabase(config('DATABASE_URL'))
 
 
 database_proxy.initialize(database)
