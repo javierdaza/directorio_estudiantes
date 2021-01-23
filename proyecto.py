@@ -18,6 +18,7 @@ app.register_blueprint(cargar)
 
 
 def main():
+    database_proxy.connect()
     database_proxy.create_tables([Estudiante], safe=True)
     app.run(debug=True)
 
