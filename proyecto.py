@@ -16,6 +16,14 @@ app.register_blueprint(crear)
 app.register_blueprint(guardar)
 app.register_blueprint(cargar)
 
+@app.before_request
+def _db_connect():
+    database_proxy.connect()
+
+@app.teardown_request
+def _db_close(exc):
+    if not database_proxy.is_closed():
+        database_proxy.close()
 
 def main():
     database_proxy.connect()
