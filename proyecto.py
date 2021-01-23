@@ -16,20 +16,19 @@ app.register_blueprint(crear)
 app.register_blueprint(guardar)
 app.register_blueprint(cargar)
 
+
 @app.before_request
 def _db_connect():
     database_proxy.connect()
+
 
 @app.teardown_request
 def _db_close(exc):
     if not database_proxy.is_closed():
         database_proxy.close()
 
-def main():
+
+if __name__ == '__main__':
     database_proxy.connect()
     database_proxy.create_tables([Estudiante], safe=True)
     app.run(debug=True)
-
-
-if __name__ == '__main__':
-    main()
