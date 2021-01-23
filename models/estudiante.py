@@ -26,15 +26,18 @@ class Estudiante(BaseModel):
 
 
 if production:
-    url = urlparse(config('DATABASE_URL'))
-    database = PostgresqlDatabase(
-        database=url.path[1:],
-        user=url.username,
-        password=url.password,
-        host=url.hostname,
-        port=url.port,
-        autorollback=True
-    )
+    if config('HEROKU', cast=int) == 1:
+        url = urlparse(config('DATABASE_URL'))
+        database = PostgresqlDatabase(
+            database=url.path[1:],
+            user=url.username,
+            password=url.password,
+            host=url.hostname,
+            port=url.port,
+            autorollback=True
+        )
+    else:
+        database = SqliteDatabase(config('DATABASE_URL'))
 else:
     database = SqliteDatabase(config('DATABASE_URL'))
 
