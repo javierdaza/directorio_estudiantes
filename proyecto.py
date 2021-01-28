@@ -1,3 +1,5 @@
+from socket import gethostname
+
 from flask import Flask
 from decouple import config
 
@@ -31,4 +33,5 @@ def _db_close(exc):
 if __name__ == '__main__':
     database_proxy.connect()
     database_proxy.create_tables([Estudiante], safe=True)
-    app.run(debug=True)
+    if 'liveconsole' not in gethostname():
+        app.run(debug=True)

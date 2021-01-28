@@ -56,7 +56,41 @@ heroku logs --tail --app <NOMBRE_DE_TU_APP_DE_HEROKU>
 ```
 
 
+## Despliegue en PythonAnywhere (PyAw)
+Me basaré en la guía [oficial de despliegue de Flask en PyAw](https://help.pythonanywhere.com/pages/Flask/) para esta receta:
+
+1. Registrate en PyAw y crea un proyecto web
+2. Sigue el paso a paso para crear una app de Flask usando python3
+3. Las pestañas mas comúnes en su plataforma serán Consoles y Web
+```
+En Web encontrarás la mayoría de información de tu aplicación web
+En Consoles tendrás acceso a las consolas de Bash y MySQL. En la versión gratuita solo puedes tener 2 consolas abiertas al tiempo.
+```
+4. Cónectate en la consola de PyAw y ve a la dirección de tu proyecto. Seguramente será algo como /home/<NOMBRE_USUARIO>/mysite (esta información aparece en la pestaña Web)
+5. Reemplaza el archivo app.py por tu proyecto. Sugiero aquí hacer un git clone de tu repositorio.
+6. Crea un ambiente virtual y actívalo.
+7. Instala tus paquetes de python adentro del ambiente virtual. Copia la ruta de tu virtualenv porque la necesitarás en el siguiente paso. Debe ser una ruta como:
+```
+/home/<NOMBRE_USUARIO>/mysite/venv
+```
+8. En la pestaña Web, ve a virtualenv y agrega la ruta del paso 7.
+
+9. En Web aparece la ruta a tu archivo wsgi.py. Cambia la siguiente línea para que tenga sentido con tu proyecto:
+```
+from proyecto import app as application  # noqa
+```
+10. Nuevamente en la consola de tu proyecto, asegurate que se cree la base de datos sqlite. Puedes correr `python proyecto.py` y una vez generada, detenerla.
+11. Ve a web Recarga tu proyecto. El botón verde que dice reload.
+
+Recuerda que en PyAw no sirve usar `app.run()` de Flask. El servidor web se encargará de correr tu proyecto. Por ello se usa el pequeño hack especificado en la guía:
+```
+if __name__ == '__main__':
+    if 'liveconsole' not in gethostname():
+        app.run()
+```
 ## TODO
 - Implementar una vista para actualizar estudiantes
 - Implementar una vista para borrar estudiantes
 - Mejorar el CSS
+- En una rama apare mostrar el mismo proceso con SQLAlchemy
+- Usar la base de datos MySQL de PyAw
